@@ -1,0 +1,11 @@
+쪽지 보내기
+<form method="post">
+    {% csrf_token %}
+    {% if user_id == '-1' %}
+    <input type="text" name="user_id" placeholder="user id(pk)"><!--나중에 아이디 검색해서 할 수 있게-->
+    {% else %}
+    <input type="text" name="user_id" value="{{user_id}}" readonly>
+    {% endif %}
+    <input type="text" name="content" placeholder="content">
+    <input type="submit" value="쪽지 보내기">
+</form>
