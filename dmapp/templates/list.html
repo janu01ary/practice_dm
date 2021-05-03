@@ -6,9 +6,15 @@
 
 받은 쪽지들 <br>
 {% for dm in dms %}
-<a href="{% url 'detail' dm.id %}">
-    {{dm.sender.username}} : {{dm.content}}
-</a> <br>
+    {% if not dm.read %}
+    <a href="{% url 'detail' dm.id %}" style="color: red;">
+        {{dm.sender.username}} : {{dm.content}}
+    </a> <br>
+    {% else %}
+    <a href="{% url 'detail' dm.id %}">
+        {{dm.sender.username}} : {{dm.content}}
+    </a> <br>
+    {% endif %}
 {% endfor %}
 
 <br><br>

@@ -1,6 +1,7 @@
 
 {% if user.is_authenticated %}
-    나에게 온 쪽지 수: {{count}}<br>
+    나에게 온 총 쪽지 수: {{count}}<br>
+    확인하지 않은 쪽지 수: {{new_count}}
     <a href="{% url 'list' %}">쪽지 보기</a>
 {% else %}
     로그인해주세요~

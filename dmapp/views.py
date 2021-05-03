@@ -6,7 +6,8 @@ from .models import Dm
 # Create your views here.
 def home(request):
     dms = Dm.objects.filter(receiver=request.user)
-    return render(request, 'home.html', {'count': dms.count()})
+    new_dms = dms & Dm.objects.filter(read=False)
+    return render(request, 'home.html', {'count': dms.count(), 'new_count': new_dms.count()})
 
 def dm_list(request):
     dms = Dm.objects.filter(receiver=request.user)
@@ -28,4 +29,6 @@ def create(request):
 
 def detail(request, id):
     dm = get_object_or_404(Dm, pk = id)
+    dm.read = True
+    dm.save()
     return render(request, 'detail.html', {'dm': dm})
