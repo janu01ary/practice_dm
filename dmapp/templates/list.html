@@ -4,8 +4,17 @@
 <a href="/create?sender_id=-1">쪽지 보내기</a>
 <br><br><br>
 
+받은 쪽지들 <br>
 {% for dm in dms %}
 <a href="{% url 'detail' dm.id %}">
-    {{dm.sender_id}} : {{dm.content}}
+    {{dm.sender.username}} : {{dm.content}}
+</a> <br>
+{% endfor %}
+
+<br><br>
+보낸 쪽지들 <br>
+{% for dm in send_dms %}
+<a href="{% url 'detail' dm.id %}">
+    {{dm.receiver.username}} 님에게: {{dm.content}}
 </a> <br>
 {% endfor %}
